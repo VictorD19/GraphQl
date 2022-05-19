@@ -1,0 +1,39 @@
+type Query {
+  users: [User!]!
+  user(id: ID!): User
+}
+
+type Mutation {
+  createUser(user: UserInput!): User
+  updateUser(userId:ID , user: UserInput!): User
+  deleteUser(userId: ID!): String
+}
+
+type Error {
+  message: String
+}
+
+type User {
+  id: ID
+  name: String
+  email: String
+  posts: [Post]
+  followers: [User]
+  following: [User]
+}
+type Post {
+  id: ID
+  title: String
+  description: String
+  content: String
+  isPublished: Boolean
+  author: User
+  createdAt: Date
+}
+
+input UserInput {
+  name: String
+  email: String    
+}
+# custom scalar types
+scalar Date
